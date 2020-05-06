@@ -1,0 +1,25 @@
+.author-frame{
+    text-align: center;
+    padding: 1rem;
+}
+
+.author-frame div{
+    margin-bottom: 1rem;
+}
+
+.author-frame .author-introduction{
+    color: #999;
+    font-size: .7rem;
+}
+
+.author-frame .author-introduction .name{
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: rgb(34,34,34);
+}
+
+.author-frame .author-introduction .account{
+    background-color: #999;
+    margin-top: .5rem;
+    margin-right: .5rem;
+}

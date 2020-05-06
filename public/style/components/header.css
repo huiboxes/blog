@@ -1,0 +1,27 @@
+.topNavBar{
+    width: 100%;
+    padding: .7rem 0;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    transition: all .3s;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.18);
+}
+
+.topNavBar .logo{
+    color: rgb(0,40,93);
+    font-family: "Arial Black","Microsoft YaHei",STHeiti,Simhei;
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+
+.topNavBar .text{
+    font-family: KaiTi,STKaiti;
+    margin-left: .5rem;
+}
+
+.topNavBar.sticky{
+    padding: .2rem 0;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.18), 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+}

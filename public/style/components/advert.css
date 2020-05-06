@@ -1,0 +1,10 @@
+.advert-frame{
+    margin-top: .5rem;
+}
+
+.advert-frame > div{
+    border-radius: .3rem;
+    margin-bottom: .2rem;
+    overflow: hidden;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+}

@@ -6,7 +6,12 @@
   },
   "include": [
     "./",
-    "src/**/*.json"
+    "src/**/*.json",
+    "config/**/*.ts", // ADD
+    "config/**/*.js", // ADD if you have JS files
+    "src/**/*.ts", // ADD
+    "src/**/*.tsx", // ADD
+    "src/**/*.js",  // ADD if you have JS files
   ],
   "exclude": [
     "node_modules/",

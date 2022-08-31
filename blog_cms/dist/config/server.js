@@ -7,6 +7,9 @@ exports.default = ({ env }) => ({
         keys: env.array('APP_KEYS'),
     },
     admin: {
-        url: "/huibox996"
+        auth: {
+            secret: env("ADMIN_JWT_SECRET", "df3b12ff57543d4aed89ae3a350cae5b"),
+        },
+        url: process.env.PUBLIC_ADMIN_URL
     }
 });

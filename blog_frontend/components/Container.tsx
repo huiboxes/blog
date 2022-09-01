@@ -71,7 +71,7 @@ export default function Container(props) {
           <div className="ml-[-0.60rem]">
             <MobileMenu />
             <NavItem href="/" text="首页" />
-            <NavItem href="/guestbook" text="留言板" />
+            {/* <NavItem href="/guestbook" text="留言板" /> */}
             {/* <NavItem href="/dashboard" text="Dashboard" /> */}
             <NavItem href="/blog" text="博客" />
             {/* <NavItem href="/snippets" text="Snippets" /> */}

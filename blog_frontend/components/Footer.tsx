@@ -23,26 +23,26 @@ export default function Footer() {
           <Link href="/">
             <a className="text-gray-500 hover:text-gray-600 transition">首页</a>
           </Link>
-          <Link href="/about">
+          {/* <Link href="/about">
             <a className="text-gray-500 hover:text-gray-600 transition">
               关于
             </a>
-          </Link>
-          <Link href="/newsletter">
+          </Link> */}
+        </div>
+        <div className="flex flex-col space-y-4">
+          <ExternalLink href="https://github.com/huiboxes">GitHub</ExternalLink>
+        </div>
+        <div className="flex flex-col space-y-4">
+        <Link href="/newsletter">
             <a className="text-gray-500 hover:text-gray-600 transition">
-              通讯
+              订阅我
             </a>
           </Link>
-        </div>
-        <div className="flex flex-col space-y-4">
-          <ExternalLink href="https://github.com/leerob">GitHub</ExternalLink>
-        </div>
-        <div className="flex flex-col space-y-4">
-          <Link href="/guestbook">
+          {/* <Link href="/guestbook">
             <a className="text-gray-500 hover:text-gray-600 transition">
               留言板
             </a>
-          </Link>
+          </Link> */}
           {/* <Link href="/snippets">
             <a className="text-gray-500 hover:text-gray-600 transition">
               Snippets

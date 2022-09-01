@@ -12,12 +12,16 @@ export default function BlogLayout({
   children,
   post
 }: PropsWithChildren<{ post: Post }>) {
+
   return (
     <Container
       title={`${post.title} – ShaoHui`}
       description={post.excerpt}
-      image={urlForImage(post.coverImage).url()}
-      date={new Date(post.date).toISOString()}
+      image={
+        post?.coverImage
+            ? `http://blog.shdev.life:12996${post?.coverImage}`
+            : 'https://via.placeholder.com/1080'}
+      date={new Date(post.publishedAt).toISOString()}
       type="article"
     >
       <article className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
@@ -36,7 +40,7 @@ export default function BlogLayout({
             />
             <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">
               {'Xieshaohui / '}
-              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+              {format(parseISO(post.publishedAt), 'MMMM dd, yyyy')}
             </p>
           </div>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0">

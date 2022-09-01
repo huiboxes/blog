@@ -7,31 +7,17 @@ import { indexQuery } from 'lib/queries';
 import { getClient } from 'lib/sanity-server';
 import { Post } from 'lib/types';
 
+import useSWR from 'swr';
+import fetcher from 'lib/fetcher';
+
 export default function Blog({
   posts
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [searchValue, setSearchValue] = useState('');
-  const filteredBlogPosts = [
-    {
-      title: "测试文章标题",
-      slug: "test-post",
-      excerpt: "文章摘录"
-    },
-    {
-      title: "测试文章标题",
-      slug: "test-post",
-      excerpt: "文章摘录"
-    },
-    {
-      title: "测试文章标题",
-      slug: "test-post",
-      excerpt: "文章摘录"
-    }
-  ]
-  
-  // posts.filter((post) =>
-  //   post.title.toLowerCase().includes(searchValue.toLowerCase())
-  // );
+
+  const filteredBlogPosts = Array.from(posts).filter((post) =>
+    post.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   return (
     <Container
@@ -71,12 +57,12 @@ export default function Blog({
         {!searchValue && (
           <>
             <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
-              Most Popular
+              最受欢迎
             </h3>
             <BlogPost
-              title="Rust Is The Future of JavaScript Infrastructure"
-              excerpt="Why is Rust being used to replace parts of the JavaScript web ecosystem like minification (Terser), transpilation (Babel), formatting (Prettier), bundling (webpack), linting (ESLint), and more?"
-              slug="rust"
+              title="Oracle数据库基础"
+              excerpt="非常强大的商业数据库，通过本文快速学习上手这款数据库吧。默认端口：1521。与MySQL不同的是......"
+              slug="basic-knowledge-of-oracle"
             />
           </>
         )}
@@ -91,7 +77,7 @@ export default function Blog({
           )}
           {filteredBlogPosts.map((post) => (
             <BlogPost
-              key={post.title}
+              key={post.slug}
               slug={post.slug}
               title={post.title}
               excerpt={post.excerpt}
@@ -104,7 +90,16 @@ export default function Blog({
 }
 
 export async function getStaticProps({ preview = false }) {
-  const posts: Post[] = await getClient(preview).fetch(indexQuery);
+  
+  // const { data } = useSWR<MyPost[]>(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=cover`, fetcher);
+  // console.log(data)
 
+  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage`)
+  // console.log(data)
+  const posts: Post[] = data.map(item => item.attributes)
+
+  posts.forEach(item => item.coverImage.data ? item.coverImage = item.coverImage.data.attributes.url : item)
+
+  // const posts: Post[] = await getClient(preview).fetch(indexQuery);
   return { props: { posts } };
 }

@@ -8,11 +8,13 @@ import { sanityClient, getClient } from 'lib/sanity-server';
 import { mdxToHtml } from 'lib/mdx';
 import { Post } from 'lib/types';
 
+import fetcher from 'lib/fetcher';
+
 export default function PostPage({ post }: { post: Post }) {
-  const StaticTweet = ({ id }) => {
-    const tweet = post.tweets.find((tweet) => tweet.id === id);
-    return <Tweet {...tweet} />;
-  };
+  // const StaticTweet = ({ id }) => {
+  //   const tweet = post.tweets.find((tweet) => tweet.id === id);
+  //   return <Tweet {...tweet} />;
+  // };
 
   return (
     <BlogLayout post={post}>
@@ -20,8 +22,7 @@ export default function PostPage({ post }: { post: Post }) {
         {...post.content}
         components={
           {
-            ...components,
-            StaticTweet
+            ...components
           } as any
         }
       />
@@ -31,6 +32,7 @@ export default function PostPage({ post }: { post: Post }) {
 
 export async function getStaticPaths() {
   const paths = await sanityClient.fetch(postSlugsQuery);
+
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
     fallback: 'blocking'
@@ -38,23 +40,28 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const { post } = await getClient(preview).fetch(postQuery, {
-    slug: params.slug
-  });
+  // const { post } = await getClient(preview).fetch(postQuery, {
+  //   slug: params.slug
+  // });
+  const { data } = await fetcher(
+    `http://blog.shdev.life:12996/api/posts?populate[0]=coverImage&filters[slug][$eq]=${params.slug}`
+  );
+  const post = data[0].attributes;
+  post.coverImage = post?.coverImage?.data?.attributes?.url
+    ? post?.coverImage?.data?.attributes?.url
+    : 'https://via.placeholder.com/1080';
 
   if (!post) {
     return { notFound: true };
   }
 
-  const { html, tweetIDs, readingTime } = await mdxToHtml(post.content);
-  const tweets = await getTweets(tweetIDs);
+  const { html, readingTime } = await mdxToHtml(post.content);
 
   return {
     props: {
       post: {
         ...post,
         content: html,
-        tweets,
         readingTime
       }
     }

@@ -1,15 +1,50 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
+// export type Post = {
+//   _id: string;
+//   slug: string;
+//   content: MDXRemoteSerializeResult;
+//   title: string;
+//   date: string;
+//   excerpt: string;
+//   coverImage: string;
+//   readingTime: string;
+//   tweets: any[];
+// };
+
+type coverImage = {
+  id: 2;
+  data: {
+    attributes: {
+      name: string;
+      alternativeText: string;
+      caption: string;
+      width: number;
+      height: number;
+      formats: {};
+      hash: string;
+      ext: string;
+      mime: string;
+      size: number;
+      url: string;
+      previewUrl: string;
+      provider: string;
+      provider_metadata: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+  };
+};
+
 export type Post = {
-  _id: string;
+  id: string;
   slug: string;
   content: MDXRemoteSerializeResult;
   title: string;
-  date: string;
+  publishedAt: string;
   excerpt: string;
-  coverImage: string;
+  coverImage: any;
   readingTime: string;
-  tweets: any[];
 };
 
 export type Snippet = {

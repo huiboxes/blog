@@ -11,8 +11,8 @@ import LoadingSpinner from 'components/LoadingSpinner';
 export default function Subscribe() {
   const [form, setForm] = useState<FormState>({ state: Form.Initial });
   const inputEl = useRef(null);
-  const { data } = useSWR<Subscribers>('/api/subscribers', fetcher);
-  const subscriberCount = new Number(data?.count);
+  // const { data } = useSWR<Subscribers>('/api/subscribers', fetcher);
+  // const subscriberCount = new Number(data?.count);
 
   const subscribe = async (e) => {
     e.preventDefault();

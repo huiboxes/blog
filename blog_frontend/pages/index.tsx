@@ -2,12 +2,26 @@ import { Suspense } from 'react';
 import Image from 'next/future/image';
 import Link from 'next/link';
 
+import useSWR from 'swr';
+import fetcher from 'lib/fetcher';
+import { Post } from 'lib/types';
+
 import Container from '../components/Container';
 import BlogPostCard from '../components/BlogPostCard';
 import Subscribe from '../components/Subscribe';
 import VideoCard from '../components/VideoCard';
 
 export default function Home() {
+  // const { data } = fetcher(`http://blog.shdev.life:12996/api/posts`)
+  // // console.log(data)
+  // const posts: Post[] = data.map(item => item.attributes)
+
+  const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
+  const recentlyPosts = data?.recentlyPosts;
+  // const recentlyPosts = data;
+  // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
+  // const views = data?.total;
+
   return (
     <Suspense fallback={null}>
       <Container>
@@ -18,11 +32,11 @@ export default function Home() {
                 谢少辉
               </h1>
               <h2 className="text-gray-700 dark:text-gray-200 mb-4">
-                软件工程专业{' '}
-                <span className="font-semibold">学生</span>
+                软件工程专业 <span className="font-semibold">学生</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 mb-16">
-                喜欢使用脚本语言为生活带来便利。喜欢拥有良好交互体验的应用软件，并总尝试自己实现。热爱游戏，正在学习 Three.js、Unreal Engine 等 3D 相关技术。
+                喜欢使用脚本语言为生活带来便利。喜欢拥有良好交互体验的应用软件，并总尝试自己实现。热爱游戏，正在学习
+                Three.js、Unreal Engine 等 3D 相关技术。
               </p>
             </div>
             <div className="w-[80px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
@@ -41,23 +55,27 @@ export default function Home() {
           <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
             最近文章
           </h3>
-          <div className="flex gap-6 flex-col md:flex-row">
-            <BlogPostCard
-              title="Everything I Know About Style Guides, Design Systems, and Component Libraries"
-              slug="style-guides-component-libraries-design-systems"
-              gradient="from-[#D8B4FE] to-[#818CF8]"
-            />
-            <BlogPostCard
-              title="Rust Is The Future of JavaScript Infrastructure"
-              slug="rust"
-              gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
-            />
-            <BlogPostCard
-              title="Past, Present, and Future of React State Management"
-              slug="react-state-management"
-              gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
-            />
-          </div>
+
+          {recentlyPosts && (
+            <div className="flex gap-6 flex-col md:flex-row">
+              <BlogPostCard
+                title={recentlyPosts[0].title}
+                slug={recentlyPosts[0].slug}
+                gradient="from-[#D8B4FE] to-[#818CF8]"
+              />
+              <BlogPostCard
+                title={recentlyPosts[1].title}
+                slug={recentlyPosts[1].slug}
+                gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
+              />
+              <BlogPostCard
+                title={recentlyPosts[2].title}
+                slug={recentlyPosts[2].slug}
+                gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
+              />
+            </div>
+          )}
+
           <Link href="/blog">
             <a className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6">
               查看所有文章

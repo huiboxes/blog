@@ -58,8 +58,8 @@ export default function Blog({
               最受欢迎
             </h3>
             <BlogPost
-              title="Oracle数据库基础"
-              excerpt="非常强大的商业数据库，通过本文快速学习上手这款数据库吧。默认端口：1521。与MySQL不同的是......"
+              title="小程序状态管理（MobX）"
+              excerpt="全局状态管理是软件到一定体量后不可避免的问题，MobX是一个简单易用的主流解决方案。本文记录MobX基础在小程序中的使用方法......"
               slug="basic-knowledge-of-oracle"
             />
           </>
@@ -92,7 +92,7 @@ export async function getStaticProps({ preview = false }) {
   // const { data } = useSWR<MyPost[]>(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=cover`, fetcher);
   // console.log(data)
 
-  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage`)
+  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage&sort=publishedAt:DESC`)
   // console.log(data)
   const posts: Post[] = data.map(item => item.attributes)
 

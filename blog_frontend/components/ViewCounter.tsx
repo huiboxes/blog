@@ -17,5 +17,9 @@ export default function ViewCounter({ slug }) {
     registerView();
   }, [slug]);
 
-  return <span>{`${views > 0 ? views.toLocaleString() : '–––'} 次点击`}</span>;
+  return (
+    <span>
+      {`${views > 0 ? views.toLocaleString() : '–––'} 次点击`}
+    </span>
+  );
 }

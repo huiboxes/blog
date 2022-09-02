@@ -1,20 +1,27 @@
 import RSS from 'rss';
-import { sanityClient } from 'lib/sanity-server';
 import { indexQuery } from 'lib/queries';
+import fetcher from 'lib/fetcher';
+import { Post } from 'lib/types'
 
 export async function getServerSideProps({ res }) {
   const feed = new RSS({
     title: 'Xieshaohui',
-    site_url: 'https://leerob.io',
-    feed_url: 'https://leerob.io/feed.xml'
+    site_url: 'https://shdev.life',
+    feed_url: 'https://shdev.life/feed.xml'
   });
 
-  const allPosts = await sanityClient.fetch(indexQuery);
+
+  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage`)
+  // console.log(data)
+  const allPosts: Post[] = data.map(item => item.attributes)
+
+
+
   allPosts.map((post) => {
     feed.item({
       title: post.title,
-      url: `https://leerob.io/blog/${post.slug}`,
-      date: post.date,
+      url: `https://shdev.life/blog/${post.slug}`,
+      date: post.publishedAt,
       description: post.excerpt
     });
   });

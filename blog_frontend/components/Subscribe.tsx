@@ -42,10 +42,10 @@ export default function Subscribe() {
   return (
     <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque">
       <p className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
-        订阅我
+        获取学习资源
       </p>
       <p className="my-1 text-gray-800 dark:text-gray-200">
-        您将不定期从我这里获取关于网络开发、技术等文章的电子邮件。
+        您将不定期从我这里获取关于网络开发、游戏开发、开发技巧等文章（以及其它学习资源）的电子邮件。
       </p>
       <form className="relative my-4" onSubmit={subscribe}>
         <input

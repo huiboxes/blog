@@ -2,9 +2,9 @@
 
 - `layouts/*` - The different page layouts each MDX category (blog, snippets) uses.
 - `lib/*` - Short for "library", a collection of helpful utilities or code for external services.
-- `pages/api/*` - [API Routes](https://nextjs.org/docs/api-routes/introduction) powering [`/dashboard`](https://leerob.io/dashboard), newsletter subscription, guestbook, and post views.
+- `pages/api/*` - [API Routes](https://nextjs.org/docs/api-routes/introduction) powering [`/dashboard`](https://shdev.life/dashboard), newsletter subscription, guestbook, and post views.
 - `pages/blog/*` - Static pre-rendered blog pages using MDX.
-- `pages/dashboard` - [Personal dashboard](https://leerob.io/dashboard) tracking metrics.
+- `pages/dashboard` - [Personal dashboard](https://shdev.life/dashboard) tracking metrics.
 - `pages/sitemap.xml.tsx` - Automatically generated sitemap.
 - `pages/feed.xml.tsx` - Automatically generated RSS feed.
 - `pages/*` - All other static pages.
@@ -17,8 +17,8 @@
 This application requires Node.js v16.13+.
 
 ```bash
-git clone https://github.com/leerob/leerob.io.git
-cd leerob.io
+git clone https://github.com/leerob/shdev.life.git
+cd shdev.life
 yarn
 yarn dev
 ```
@@ -27,4 +27,4 @@ Create a `.env` file similar to [`.env.example`](git@github.com:huiboxes/my-blog
 
 ## Cloning / Forking
 
-Please review the [license](https://github.com/leerob/leerob.io/blob/main/LICENSE.txt) and remove all of my personal information (resume, blog posts, images, etc.).
+Please review the [license](https://github.com/leerob/shdev.life/blob/main/LICENSE.txt) and remove all of my personal information (resume, blog posts, images, etc.).

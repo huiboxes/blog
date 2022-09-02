@@ -1,5 +1,7 @@
-import { sanityClient } from 'lib/sanity-server';
 import { postSlugsQuery } from 'lib/queries';
+import fetcher from 'lib/fetcher';
+import { Post } from 'lib/types'
+
 
 const createSitemap = (slugs) => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -7,7 +9,7 @@ const createSitemap = (slugs) => `<?xml version="1.0" encoding="UTF-8"?>
           .map((slug) => {
             return `
                 <url>
-                    <loc>${`https://leerob.io/${slug}`}</loc>
+                    <loc>${`https://shdev.life/${slug}`}</loc>
                 </url>
             `;
           })
@@ -15,7 +17,11 @@ const createSitemap = (slugs) => `<?xml version="1.0" encoding="UTF-8"?>
     </urlset>
 `;
 export async function getServerSideProps({ res }) {
-  const allPosts = await sanityClient.fetch(postSlugsQuery);
+  
+  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage`)
+  // console.log(data)
+  const allPosts: Post[] = data.map(item => item.attributes)
+
   const allPages = [
     ...allPosts.map((slug) => `blog/${slug}`),
     ...[

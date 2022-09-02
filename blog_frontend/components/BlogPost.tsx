@@ -25,7 +25,7 @@ export default function BlogPost({
               {title}
             </h4>
             <p className="w-32 mb-4 text-left text-gray-500 md:text-right md:mb-0">
-              {`${views ? new Number(views).toLocaleString() : '–––'} views`}
+              {`${views ? new Number(views).toLocaleString() : '–––'} 次点击`}
             </p>
           </div>
           <p className="text-gray-600 dark:text-gray-400">{excerpt}</p>

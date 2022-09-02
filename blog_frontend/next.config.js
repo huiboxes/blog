@@ -6,9 +6,6 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: [
-      'i.scdn.co', // Spotify Album Art
-      'pbs.twimg.com', // Twitter Profile Picture
-      'cdn.sanity.io'
     ]
   },
   experimental: {
@@ -29,8 +26,8 @@ module.exports = {
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com;
-    child-src *.youtube.com *.google.com *.twitter.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.twitter.com;
+    child-src *.google.com *.twitter.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
     img-src * blob: data:;
     media-src 'none';

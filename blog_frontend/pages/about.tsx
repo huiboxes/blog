@@ -20,8 +20,8 @@ export default function About() {
             </li>
             <li>
               Website:{' '}
-              <Link href="https://leerob.io">
-                <a>https://leerob.io</a>
+              <Link href="https://shdev.life">
+                <a>https://shdev.life</a>
               </Link>
             </li>
           </ul>

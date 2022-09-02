@@ -2,7 +2,6 @@ import { MDXRemote } from 'next-mdx-remote';
 import SnippetLayout from 'layouts/snippets';
 import components from 'components/MDXComponents';
 import { snippetsQuery, snippetSlugsQuery } from 'lib/queries';
-import { sanityClient, getClient } from 'lib/sanity-server';
 import { mdxToHtml } from 'lib/mdx';
 import { Snippet } from 'lib/types';
 
@@ -15,18 +14,20 @@ export default function SnippetsPage({ snippet }: { snippet: Snippet }) {
 }
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(snippetSlugsQuery);
+  // const paths = await sanityClient.fetch(snippetSlugsQuery);
   return {
-    paths: paths.map((slug) => ({ params: { slug } })),
+    // paths: paths.map((slug) => ({ params: { slug } })),
+    paths: [],
     fallback: 'blocking'
   };
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const { snippet } = await getClient(preview).fetch(snippetsQuery, {
-    slug: params.slug
-  });
+  // const { snippet } = await getClient(preview).fetch(snippetsQuery, {
+  //   slug: params.slug
+  // });
 
+  const snippet = null;
   if (!snippet) {
     return { notFound: true };
   }

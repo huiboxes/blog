@@ -7,6 +7,17 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrism from 'rehype-prism-plus';
 
 export async function mdxToHtml(source) {
+  const regex = /\!\[(.*?)\]\((.*?)\)/gm;
+  let matches;
+
+  while ((matches = regex.exec(source)) !== null) {
+    source = source.replace(
+      '](' + matches[2],
+      `](${process.env.NEXT_PUBLIC_BASE_URL}${matches[2]
+        .replace(/ /g, '-')}`
+    );
+  }
+
   const mdxSource = await serialize(source, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],

@@ -78,7 +78,7 @@ export default function MobileMenu() {
             style={{ transitionDelay: '250ms' }}
           >
             <Link href="/blog">
-              <a className="flex w-auto pb-4">文章</a>
+              <a className="flex w-auto pb-4">博客</a>
             </Link>
           </li>
           {/* <li

@@ -4,10 +4,8 @@ import Container from 'components/Container';
 import BlogPost from 'components/BlogPost';
 import { InferGetStaticPropsType } from 'next';
 import { indexQuery } from 'lib/queries';
-import { getClient } from 'lib/sanity-server';
 import { Post } from 'lib/types';
 
-import useSWR from 'swr';
 import fetcher from 'lib/fetcher';
 
 export default function Blog({

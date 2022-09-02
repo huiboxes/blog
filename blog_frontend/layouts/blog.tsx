@@ -6,13 +6,11 @@ import Container from 'components/Container';
 import Subscribe from 'components/Subscribe';
 import ViewCounter from 'components/ViewCounter';
 import { Post } from 'lib/types';
-import { urlForImage } from 'lib/sanity';
 
 export default function BlogLayout({
   children,
   post
 }: PropsWithChildren<{ post: Post }>) {
-
   return (
     <Container
       title={`${post.title} – ShaoHui`}
@@ -44,7 +42,7 @@ export default function BlogLayout({
             </p>
           </div>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0">
-            {post.readingTime}
+            {`约需阅读${post.readingTime.split(" min read")[0]}分钟`}
             {` • `}
             <ViewCounter slug={post.slug} />
           </p>
@@ -59,7 +57,7 @@ export default function BlogLayout({
           <div className="text-sm text-gray-700 dark:text-gray-300">
             <a
               href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
-                `https://leerob.io/blog/${post.slug}`
+                `https://shdev.life/blog/${post.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -68,7 +66,7 @@ export default function BlogLayout({
             </a>
             {` • `}
             <a
-              href="https://github.com/leerob/leerob.io/issues"
+              href="https://github.com/leerob/shdev.life/issues"
               target="_blank"
               rel="noopener noreferrer"
             >

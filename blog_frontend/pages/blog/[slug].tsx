@@ -4,7 +4,6 @@ import Tweet from 'components/Tweet';
 import components from 'components/MDXComponents';
 import { postQuery, postSlugsQuery } from 'lib/queries';
 import { getTweets } from 'lib/twitter';
-import { sanityClient, getClient } from 'lib/sanity-server';
 import { mdxToHtml } from 'lib/mdx';
 import { Post } from 'lib/types';
 
@@ -31,7 +30,12 @@ export default function PostPage({ post }: { post: Post }) {
 }
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(postSlugsQuery);
+  // const paths = await sanityClient.fetch(postSlugsQuery);
+  const { data } = await fetcher(
+    `http://blog.shdev.life:12996/api/posts`
+  );
+
+  const paths = Array.from(data[0]?.attributes).map(item => item.slug);
 
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
@@ -43,17 +47,19 @@ export async function getStaticProps({ params, preview = false }) {
   // const { post } = await getClient(preview).fetch(postQuery, {
   //   slug: params.slug
   // });
+
   const { data } = await fetcher(
     `http://blog.shdev.life:12996/api/posts?populate[0]=coverImage&filters[slug][$eq]=${params.slug}`
   );
-  const post = data[0].attributes;
-  post.coverImage = post?.coverImage?.data?.attributes?.url
-    ? post?.coverImage?.data?.attributes?.url
-    : 'https://via.placeholder.com/1080';
-
+  const post = data[0]?.attributes;
+  
   if (!post) {
     return { notFound: true };
   }
+
+  post.coverImage = post?.coverImage?.data?.attributes?.url
+    ? post?.coverImage?.data?.attributes?.url
+    : 'https://via.placeholder.com/1080';
 
   const { html, readingTime } = await mdxToHtml(post.content);
 

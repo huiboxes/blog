@@ -60,7 +60,7 @@ export default function Blog({
             <BlogPost
               title="小程序状态管理（MobX）"
               excerpt="全局状态管理是软件到一定体量后不可避免的问题，MobX是一个简单易用的主流解决方案。本文记录MobX基础在小程序中的使用方法......"
-              slug="basic-knowledge-of-oracle"
+              slug="mobx-in-mini-program"
             />
           </>
         )}

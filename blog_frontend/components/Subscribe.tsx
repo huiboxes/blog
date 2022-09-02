@@ -70,6 +70,7 @@ export default function Subscribe() {
         <SuccessMessage>{form.message}</SuccessMessage>
       ) : (
         <p className="text-sm text-gray-800 dark:text-gray-200">
+          {`已有 32 名订阅者`}
           {/* {`${
             subscriberCount > 0 ? subscriberCount.toLocaleString() : '-'
           } subscribers – `} */}

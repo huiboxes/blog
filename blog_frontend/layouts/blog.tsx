@@ -1,5 +1,6 @@
 import Image from 'next/future/image';
 import { parseISO, format } from 'date-fns';
+import { zhCN } from "date-fns/locale";
 import { PropsWithChildren, Suspense } from 'react';
 
 import Container from 'components/Container';
@@ -37,8 +38,8 @@ export default function BlogLayout({
               className="rounded-full"
             />
             <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              {'Xieshaohui / '}
-              {format(parseISO(post.publishedAt), 'MMMM dd, yyyy')}
+              {'写于 / '}
+              {format(parseISO(post.publishedAt), 'yyyy, MMMM dd',{ locale: zhCN })}
             </p>
           </div>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0">
@@ -53,25 +54,6 @@ export default function BlogLayout({
           </div>
           <div className="mt-8">
             <Subscribe />
-          </div>
-          <div className="text-sm text-gray-700 dark:text-gray-300">
-            <a
-              href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
-                `https://shdev.life/blog/${post.slug}`
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {'Discuss on Twitter'}
-            </a>
-            {` • `}
-            <a
-              href="https://github.com/leerob/shdev.life/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {'Suggest Change'}
-            </a>
           </div>
         </Suspense>
       </article>

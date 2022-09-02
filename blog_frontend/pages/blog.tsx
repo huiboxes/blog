@@ -66,11 +66,11 @@ export default function Blog({
         )}
         <Suspense fallback={null}>
           <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
-            All Posts
+            全部文章
           </h3>
           {!filteredBlogPosts.length && (
             <p className="mb-4 text-gray-600 dark:text-gray-400">
-              No posts found.
+              没有找到相关文章。
             </p>
           )}
           {filteredBlogPosts.map((post) => (

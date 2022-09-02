@@ -1,5 +1,6 @@
 import { useState, useRef, Suspense } from 'react';
 import { format } from 'date-fns';
+import { zhCN } from "date-fns/locale";
 import { signIn, useSession } from 'next-auth/react';
 import useSWR, { useSWRConfig } from 'swr';
 
@@ -28,7 +29,7 @@ function GuestbookEntry({ entry, user }) {
         <p className="text-sm text-gray-500">{entry.created_by}</p>
         <span className=" text-gray-200 dark:text-gray-800">/</span>
         <p className="text-sm text-gray-400 dark:text-gray-600">
-          {format(new Date(entry.updated_at), "d MMM yyyy 'at' h:mm bb")}
+          {format(new Date(entry.updated_at), "yyyy MMM d '于' h:mm bb",{ locale: zhCN })}
         </p>
         {user && entry.created_by === user.name && (
           <>

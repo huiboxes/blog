@@ -45,7 +45,7 @@ export default function Subscribe() {
         获取学习资源
       </p>
       <p className="my-1 text-gray-800 dark:text-gray-200">
-        您将不定期从我这里获取关于网络开发、游戏开发、开发技巧等文章（以及其它学习资源）的电子邮件。
+        您将不定期从我这里获取关于网络开发、游戏开发等文章的电子邮件，并且你可以随时取消订阅。
       </p>
       <form className="relative my-4" onSubmit={subscribe}>
         <input

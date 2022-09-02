@@ -39,7 +39,8 @@ export default function Snippets({
 }
 
 export async function getStaticProps({ preview = false }) {
-  const snippets: Snippet[] = await getClient(preview).fetch(allSnippetsQuery);
+  // const snippets: Snippet[] = await getClient(preview).fetch(allSnippetsQuery);
+  const snippets: Snippet[] = [];
 
   return { props: { snippets } };
 }

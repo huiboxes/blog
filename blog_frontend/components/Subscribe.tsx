@@ -19,6 +19,16 @@ export default function Subscribe() {
     setForm({ state: Form.Loading });
 
     const email = inputEl.current.value;
+
+    if(email === "huiboxes@gmail.com"){
+      setForm({
+        state: Form.Error,
+        message: '这只是个示例邮箱'
+      });
+      return 
+    }
+
+
     const res = await fetch(`/api/subscribe?email=${email}`, {
       method: 'POST'
     });
@@ -35,7 +45,7 @@ export default function Subscribe() {
     inputEl.current.value = '';
     setForm({
       state: Form.Success,
-      message: `Hooray! You're now on the list.`
+      message: `感谢! 您已成功订阅。`
     });
   };
 
@@ -71,16 +81,6 @@ export default function Subscribe() {
       ) : (
         <p className="text-sm text-gray-800 dark:text-gray-200">
           {`已有 32 名订阅者`}
-          {/* {`${
-            subscriberCount > 0 ? subscriberCount.toLocaleString() : '-'
-          } subscribers – `} */}
-          {/* <a
-            href="https://www.getrevue.co/profile/leerob"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View all issues
-          </a> */}
         </p>
       )}
     </div>

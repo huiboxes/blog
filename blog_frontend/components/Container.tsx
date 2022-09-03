@@ -38,8 +38,8 @@ export default function Container(props) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: 'Xieshaohui – Developer, writer, creator.',
-    description: `Front-end developer, JavaScript enthusiast, and course creator.`,
+    title: '谢少辉 – 编程爱好者, creator。',
+    description: `编程爱好者, JavaScript 爱好者。`,
     image: 'https://shdev.life/static/images/lee-banner.png',
     type: 'website',
     ...customMeta

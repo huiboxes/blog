@@ -11,7 +11,7 @@ export default async function handler(req: NextRequest) {
   if (!email) {
     return new Response(
       JSON.stringify({
-        error: 'Email is required'
+        error: '请输入邮箱'
       }),
       {
         status: 400,
@@ -22,10 +22,23 @@ export default async function handler(req: NextRequest) {
     );
   }
 
-  const result = await fetch('https://www.getrevue.co/api/v2/subscribers', {
+  if (email === 'huiboxes@gmail.com') {
+    return new Response(
+      JSON.stringify({
+        error: '这只是个示例邮箱'
+      }),
+      {
+        status: 400,
+        headers: {
+          'content-type': 'application/json'
+        }
+      }
+    );
+  }
+
+  const result = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/subscribers`, {
     method: 'POST',
     headers: {
-      Authorization: `Token ${process.env.REVUE_API_KEY}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email })

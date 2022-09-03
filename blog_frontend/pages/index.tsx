@@ -44,10 +44,10 @@ export default function Home() {
                 alt="Xieshaohui"
                 height={176}
                 width={176}
-                src="/avatar.jpg"
+                src="/avatar.png"
                 sizes="30vw"
                 priority
-                className="rounded-full filter grayscale"
+                className="rounded-full filter"
               />
             </div>
           </div>

@@ -12,10 +12,11 @@ export default async function handler(req: NextRequest) {
       method: 'GET'
     }
   );
+  
 
   const recentlyPosts = await response.json();
   
-
+  // console.log(recentlyPosts.data)
   return new Response(
     JSON.stringify({
       recentlyPosts: recentlyPosts.data.map(item => item.attributes)

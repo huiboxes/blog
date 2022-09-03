@@ -96,7 +96,7 @@ export async function getStaticProps({ preview = false }) {
   // console.log(data)
   const posts: Post[] = data.map(item => item.attributes)
 
-  posts.forEach(item => item.coverImage.data ? item.coverImage = item.coverImage.data.attributes.url : item)
+  posts.forEach(item => item.coverImage ? item.coverImage = item.coverImage?.data.attributes.url : item)
 
   // const posts: Post[] = await getClient(preview).fetch(indexQuery);
   return { props: { posts } };

@@ -49,7 +49,7 @@ export default function Home() {
             最近文章
           </h3>
 
-          {recentlyPosts && (
+          {recentlyPosts ? (
             <div className="flex gap-6 flex-col md:flex-row">
               <BlogPostCard
                 title={recentlyPosts[0].title}
@@ -67,7 +67,7 @@ export default function Home() {
                 gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
               />
             </div>
-          )}
+          ): '内容正在加载中......'}
           {/* <div className="flex gap-6 flex-col md:flex-row">
             <BlogPostCard
               title="机器学习快速入门"

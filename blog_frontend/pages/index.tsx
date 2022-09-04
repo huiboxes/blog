@@ -12,11 +12,8 @@ import Subscribe from '../components/Subscribe';
 import VideoCard from '../components/VideoCard';
 
 export default function Home() {
-  // const { data } = useSWR<any>(`http://blog.shdev.life:12996/api/posts?pagination[pageSize]=3&sort=publishedAt:DESC`, fetcher)
-  // const recentlyPosts = data?.data.map(item => item.attributes)
-
-  // const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
-  // const recentlyPosts = data?.recentlyPosts;
+  const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
+  const recentlyPosts = data?.recentlyPosts;
 
   return (
     <Suspense fallback={null}>
@@ -52,7 +49,26 @@ export default function Home() {
             最近文章
           </h3>
 
-          <div className="flex gap-6 flex-col md:flex-row">
+          {recentlyPosts && (
+            <div className="flex gap-6 flex-col md:flex-row">
+              <BlogPostCard
+                title={recentlyPosts[0].title}
+                slug={recentlyPosts[0].slug}
+                gradient="from-[#D8B4FE] to-[#818CF8]"
+              />
+              <BlogPostCard
+                title={recentlyPosts[1].title}
+                slug={recentlyPosts[1].slug}
+                gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
+              />
+              <BlogPostCard
+                title={recentlyPosts[2].title}
+                slug={recentlyPosts[2].slug}
+                gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
+              />
+            </div>
+          )}
+          {/* <div className="flex gap-6 flex-col md:flex-row">
             <BlogPostCard
               title="机器学习快速入门"
               slug="ml-quick-start"
@@ -68,7 +84,7 @@ export default function Home() {
               slug="basic-knowledge-of-oracle"
               gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
             />
-          </div>
+          </div> */}
 
           <Link href="/blog">
             <a className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6">

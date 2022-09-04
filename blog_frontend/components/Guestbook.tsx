@@ -38,7 +38,7 @@ function GuestbookEntry({ entry, user }) {
               className="text-sm text-red-600 dark:text-red-400"
               onClick={deleteEntry}
             >
-              Delete
+              删除
             </button>
           </>
         )}
@@ -91,7 +91,7 @@ export default function Guestbook({ fallbackData }) {
     <>
       <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque">
         <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
-          登录后留言
+          留言
         </h5>
         <p className="my-1 text-gray-800 dark:text-gray-200">
         为本站未来的访问者分享一个消息。
@@ -122,7 +122,7 @@ export default function Guestbook({ fallbackData }) {
               className="flex items-center justify-center absolute right-1 top-1 px-4 pt-1 font-medium h-8 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded w-28"
               type="submit"
             >
-              {form.state === Form.Loading ? <LoadingSpinner /> : 'Sign'}
+              {form.state === Form.Loading ? <LoadingSpinner /> : '发表'}
             </button>
           </form>
         )}

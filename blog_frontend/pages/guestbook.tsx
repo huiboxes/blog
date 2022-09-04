@@ -13,7 +13,7 @@ export default function GuestbookPage({ fallbackData }) {
           留言板
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
-          请在下方留言。它可以是任何东西，欣赏，信息，智慧，甚至幽默。让我吃惊!
+          请在下方留言，它可以是任何东西，观点，评价，甚至笑话。留下些足迹吧~
         </p>
         <Guestbook fallbackData={fallbackData} />
       </div>

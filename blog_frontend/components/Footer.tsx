@@ -38,11 +38,11 @@ export default function Footer() {
               订阅我
             </a>
           </Link>
-          {/* <Link href="/guestbook">
+          <Link href="/guestbook">
             <a className="text-gray-500 hover:text-gray-600 transition">
               留言板
             </a>
-          </Link> */}
+          </Link>
           {/* <Link href="/snippets">
             <a className="text-gray-500 hover:text-gray-600 transition">
               Snippets

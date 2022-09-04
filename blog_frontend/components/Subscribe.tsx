@@ -11,8 +11,8 @@ import LoadingSpinner from 'components/LoadingSpinner';
 export default function Subscribe() {
   const [form, setForm] = useState<FormState>({ state: Form.Initial });
   const inputEl = useRef(null);
-  // const { data } = useSWR<Subscribers>('/api/subscribers', fetcher);
-  // const subscriberCount = new Number(data?.count);
+  const { data } = useSWR<any>('/api/subscribers', fetcher);
+  const subscriberCount = new Number(data?.subscriberCount);
 
   const subscribe = async (e) => {
     e.preventDefault();
@@ -80,7 +80,9 @@ export default function Subscribe() {
         <SuccessMessage>{form.message}</SuccessMessage>
       ) : (
         <p className="text-sm text-gray-800 dark:text-gray-200">
-          {`已有 32 名订阅者`}
+          {`已有 ${
+            subscriberCount > 0 ? subscriberCount.toLocaleString() : '-'
+          } 订阅者`}
         </p>
       )}
     </div>

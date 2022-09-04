@@ -98,14 +98,16 @@ export default function Home() {
           </p>
           <VideoCard
             index="01"
-            href="javascript:;"
+            href="/#"
             length="00:00:00"
             title="敬请期待"
+            onClick={(e) => e.preventDefault()}
           />
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="javascript:;"
+            href="/#"
+            onClick={(e) => e.preventDefault()}
             className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6"
           >
             查看所有视频

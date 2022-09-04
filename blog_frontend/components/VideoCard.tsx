@@ -1,10 +1,11 @@
-export default function VideoCard({ href, length, title, index }) {
+export default function VideoCard({ href, length, title, index, onClick }) {
   return (
     <a
       className="w-full"
       href={href}
       aria-label={title}
       target="_blank"
+      onClick={onClick}
       rel="noopener noreferrer"
     >
       <div className="w-full border-b border-gray-200 dark:border-gray-700 py-3 transform hover:scale-[1.01] transition-all">

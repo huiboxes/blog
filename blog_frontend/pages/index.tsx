@@ -16,8 +16,12 @@ export default function Home() {
   // // console.log(data)
   // const posts: Post[] = data.map(item => item.attributes)
 
-  const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
-  const recentlyPosts = data?.recentlyPosts;
+
+  const { data } = useSWR<any>(`http://blog.shdev.life:12996/api/posts?pagination[pageSize]=3&sort=publishedAt:DESC`, fetcher)
+  const recentlyPosts = data?.data.map(item => item.attributes)
+
+  // const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
+  // const recentlyPosts = data?.recentlyPosts;
   // const recentlyPosts = data;
   // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
   // const views = data?.total;

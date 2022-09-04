@@ -98,14 +98,14 @@ export default function Home() {
           </p>
           <VideoCard
             index="01"
-            href="https://www.bilibili.com/video/BV1ZJ411t77U"
-            length="1:02:45"
-            title="耻辱柱，C语言乱弹琴"
+            href="javascript:;"
+            length="00:00:00"
+            title="敬请期待"
           />
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://space.bilibili.com/39169560/video"
+            href="javascript:;"
             className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6"
           >
             查看所有视频

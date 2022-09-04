@@ -41,7 +41,7 @@ export default function About() {
                 alt="Xieshaohui headshot"
                 width={400}
                 quality={100}
-                src={avatarBW}
+                src={avatar}
                 className="rounded-md"
               />
             </a>

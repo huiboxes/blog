@@ -12,19 +12,11 @@ import Subscribe from '../components/Subscribe';
 import VideoCard from '../components/VideoCard';
 
 export default function Home() {
-  // const { data } = fetcher(`http://blog.shdev.life:12996/api/posts`)
-  // // console.log(data)
-  // const posts: Post[] = data.map(item => item.attributes)
-
-
   // const { data } = useSWR<any>(`http://blog.shdev.life:12996/api/posts?pagination[pageSize]=3&sort=publishedAt:DESC`, fetcher)
   // const recentlyPosts = data?.data.map(item => item.attributes)
 
-  const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
-  const recentlyPosts = data?.recentlyPosts;
-  // const recentlyPosts = data;
-  // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
-  // const views = data?.total;
+  // const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
+  // const recentlyPosts = data?.recentlyPosts;
 
   return (
     <Suspense fallback={null}>
@@ -63,18 +55,18 @@ export default function Home() {
           {recentlyPosts && (
             <div className="flex gap-6 flex-col md:flex-row">
               <BlogPostCard
-                title={recentlyPosts[0].title}
-                slug={recentlyPosts[0].slug}
+                title="机器学习快速入门"
+                slug="ml-quick-start"
                 gradient="from-[#D8B4FE] to-[#818CF8]"
               />
               <BlogPostCard
-                title={recentlyPosts[1].title}
-                slug={recentlyPosts[1].slug}
+                title="小程序状态管理"
+                slug="mobx-in-mini-program"
                 gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
               />
               <BlogPostCard
-                title={recentlyPosts[2].title}
-                slug={recentlyPosts[2].slug}
+                title="Oracle 数据库基础"
+                slug="basic-knowledge-of-oracle"
                 gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
               />
             </div>

@@ -1,73 +1,68 @@
-import { type NextRequest } from 'next/server';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import prisma from 'lib/prisma';
 
-export const config = {
-  runtime: 'experimental-edge'
-};
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  try {
+    if (req.method === 'POST') {
+      const email = req.query.email.toString();
 
-export default async function handler(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const email = searchParams.get('email');
+      if (!email) {
+        return new Response(
+          JSON.stringify({
+            error: '请输入邮箱'
+          }),
+          {
+            status: 400,
+            headers: {
+              'content-type': 'application/json'
+            }
+          }
+        );
+      }
 
-  if (!email) {
-    return new Response(
-      JSON.stringify({
-        error: '请输入邮箱'
-      }),
-      {
-        status: 400,
-        headers: {
-          'content-type': 'application/json'
+      if (email === 'huiboxes@gmail.com') {
+        return new Response(
+          JSON.stringify({
+            error: '这只是个示例邮箱'
+          }),
+          {
+            status: 400,
+            headers: {
+              'content-type': 'application/json'
+            }
+          }
+        );
+      }
+
+      const existEmail = await prisma.subscribes.findFirst({
+        where: {
+          email
         }
-      }
-    );
-  }
+      });
+      console.log(existEmail);
 
-  if (email === 'huiboxes@gmail.com') {
-    return new Response(
-      JSON.stringify({
-        error: '这只是个示例邮箱'
-      }),
-      {
-        status: 400,
-        headers: {
-          'content-type': 'application/json'
+      if (existEmail) {
+        return res.status(400).json({
+          error: '该邮箱已经订阅过了'
+        })
+      }
+
+      const newEntry = await prisma.subscribes.create({
+        data: {
+          email,
+          created_by: 'admin'
         }
-      }
-    );
-  }
+      });
 
-  const result = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/subscribers`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email })
-  });
-  const data = await result.json();
-
-  if (!result.ok) {
-    return new Response(
-      JSON.stringify({
-        error: data.error.email[0]
-      }),
-      {
-        status: 500,
-        headers: {
-          'content-type': 'application/json'
-        }
-      }
-    );
-  }
-
-  return new Response(
-    JSON.stringify({
-      error: ''
-    }),
-    {
-      status: 201,
-      headers: {
-        'content-type': 'application/json'
-      }
+      return res.status(200).json({
+        id: newEntry.id.toString(),
+        email: newEntry.email
+      });
     }
-  );
+  } catch (e) {
+    return res.status(500).json({ message: e.message });
+  }
 }

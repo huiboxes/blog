@@ -24,6 +24,10 @@ type coverImage = {
   };
 };
 
+export type Subscribes = {
+  id: string;
+}
+
 export type Post = {
   id: string;
   slug: string;
@@ -57,7 +61,7 @@ export type FormState = {
 };
 
 export type Subscribers = {
-  count: number;
+  email: string;
 };
 
 export type Views = {

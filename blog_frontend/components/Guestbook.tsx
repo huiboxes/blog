@@ -1,6 +1,6 @@
 import { useState, useRef, Suspense } from 'react';
 import { format } from 'date-fns';
-import { zhCN } from "date-fns/locale";
+import { zhCN } from 'date-fns/locale';
 import { signIn, useSession } from 'next-auth/react';
 import useSWR, { useSWRConfig } from 'swr';
 
@@ -29,7 +29,9 @@ function GuestbookEntry({ entry, user }) {
         <p className="text-sm text-gray-500">{entry.created_by}</p>
         <span className=" text-gray-200 dark:text-gray-800">/</span>
         <p className="text-sm text-gray-400 dark:text-gray-600">
-          {format(new Date(entry.updated_at), "yyyy MMM d '于' h:mm bb",{ locale: zhCN })}
+          {format(new Date(entry.updated_at), "yyyy MMM d '于' h:mm bb", {
+            locale: zhCN
+          })}
         </p>
         {user && entry.created_by === user.name && (
           <>
@@ -83,7 +85,7 @@ export default function Guestbook({ fallbackData }) {
     mutate('/api/guestbook');
     setForm({
       state: Form.Success,
-      message: `Hooray! Thanks for signing my Guestbook.`
+      message: `感谢您的留言！`
     });
   };
 
@@ -94,16 +96,16 @@ export default function Guestbook({ fallbackData }) {
           留言
         </h5>
         <p className="my-1 text-gray-800 dark:text-gray-200">
-        为本站未来的访问者分享一个消息。
+          为本站未来的访问者分享一个消息。
         </p>
         {!session && (
           // eslint-disable-next-line @next/next/no-html-link-for-pages
           <a
-            href="/api/auth/signin/github"
+            href="/api/auth/signin"
             className="flex items-center justify-center my-4 font-bold h-8 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded w-28"
             onClick={(e) => {
               e.preventDefault();
-              signIn('github');
+              signIn();
             }}
           >
             登录
@@ -113,8 +115,8 @@ export default function Guestbook({ fallbackData }) {
           <form className="relative my-4" onSubmit={leaveEntry}>
             <input
               ref={inputEl}
-              aria-label="Your message"
-              placeholder="Your message..."
+              aria-label="你的留言"
+              placeholder="你的留言..."
               required
               className="pl-4 pr-32 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             />

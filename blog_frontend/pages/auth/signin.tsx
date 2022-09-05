@@ -20,7 +20,7 @@ const SignIn = ({
     if (session) {
       router.push('/guestbook');
     }
-  }, [session]);
+  }, [router, session]);
 
   return (
     <>

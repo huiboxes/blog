@@ -23,6 +23,9 @@ export default function Footer() {
           <Link href="/">
             <a className="text-gray-500 hover:text-gray-600 transition">首页</a>
           </Link>
+          <Link href="/blog">
+            <a className="text-gray-500 hover:text-gray-600 transition">博客</a>
+          </Link>
           {/* <Link href="/about">
             <a className="text-gray-500 hover:text-gray-600 transition">
               关于
@@ -31,9 +34,12 @@ export default function Footer() {
         </div>
         <div className="flex flex-col space-y-4">
           <ExternalLink href="https://github.com/huiboxes">GitHub</ExternalLink>
+          <ExternalLink href="https://juejin.cn/user/2858385965326968">
+            掘金
+          </ExternalLink>
         </div>
         <div className="flex flex-col space-y-4">
-        <Link href="/newsletter">
+          <Link href="/newsletter">
             <a className="text-gray-500 hover:text-gray-600 transition">
               订阅我
             </a>

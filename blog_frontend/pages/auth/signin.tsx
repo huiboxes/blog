@@ -2,26 +2,14 @@ import {
   getProviders,
   signIn,
   getCsrfToken,
-  useSession
 } from 'next-auth/react';
 import { InferGetServerSidePropsType } from 'next';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { CtxOrReq } from 'next-auth/client/_utils';
 
 const SignIn = ({
   providers,
   csrfToken
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (session) {
-      router.push('/');
-    }
-  }, [session]);
-
   return (
     <>
       <section className="h-screen">

@@ -15,7 +15,7 @@ export default function About() {
           <h2>Links</h2>
           <ul>
             <li>
-              GitHub: <a href="https://github.com/leerob">@leerob</a>
+              GitHub: <a href="https://github.com/huiboxes">@xieshaohui</a>
             </li>
             <li>
               Website:{' '}

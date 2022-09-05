@@ -17,7 +17,7 @@
 This application requires Node.js v16.13+.
 
 ```bash
-git clone https://github.com/leerob/shdev.life.git
+git clone git@github.com:huiboxes/blog.git
 cd shdev.life
 yarn
 yarn dev

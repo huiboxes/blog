@@ -38,9 +38,9 @@ export default function Container(props) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: '谢少辉 – 编程爱好者, creator。',
-    description: `编程爱好者, JavaScript 爱好者。`,
-    image: 'https://shdev.life/static/images/lee-banner.png',
+    title: '谢少辉 – 编程爱好者, JavaScript 爱好者',
+    description: `分享学习过程、技巧。记录成长过程。`,
+    image: 'https://shdev.life/static/favicons/android-chrome-512x512.png',
     type: 'website',
     ...customMeta
   };

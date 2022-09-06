@@ -49,15 +49,17 @@ export default function Container(props) {
     <div className="bg-gray-50 dark:bg-gray-900">
       <Head>
         <title>{meta.title}</title>
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
         <meta property="og:url" content={`https://shdev.life${router.asPath}`} />
         <link rel="canonical" href={`https://shdev.life${router.asPath}`} />
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Xieshaohui" />
+        <meta property="og:site_name" content="谢少辉的博客" />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
+        
         
         {meta.date && (
           <meta property="article:published_time" content={meta.date} />

@@ -49,7 +49,6 @@ export default function Container(props) {
     <div className="bg-gray-50 dark:bg-gray-900">
       <Head>
         <title>{meta.title}</title>
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
         <meta property="og:url" content={`https://shdev.life${router.asPath}`} />

@@ -89,10 +89,10 @@ export default function Blog({
 
 export async function getStaticProps({ preview = false }) {
   
-  // const { data } = useSWR<MyPost[]>(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=cover`, fetcher);
+  // const { data } = useSWR<MyPost[]>(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=categories&populate[1]=cover`, fetcher);
   // console.log(data)
 
-  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage&sort=publishedAt:DESC`)
+  const { data } = await fetcher(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=categories&populate[1]=coverImage&sort=publishedAt:DESC`)
   // console.log(data)
   const posts: Post[] = data.map(item => item.attributes)
 

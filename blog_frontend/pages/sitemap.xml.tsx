@@ -18,7 +18,7 @@ const createSitemap = (slugs) => `<?xml version="1.0" encoding="UTF-8"?>
 `;
 export async function getServerSideProps({ res }) {
   
-  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts?populate[0]=categories&populate[1]=coverImage`)
+  const { data } = await fetcher(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=categories&populate[1]=coverImage`)
   // console.log(data)
   const allPosts: Post[] = data.map(item => item.attributes)
 

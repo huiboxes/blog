@@ -29,7 +29,7 @@ export default function PostPage({ post }: { post: Post }) {
 
 export async function getStaticPaths() {
   // const paths = await sanityClient.fetch(postSlugsQuery);
-  const { data } = await fetcher(`http://blog.shdev.life:12996/api/posts`);
+  const { data } = await fetcher(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
 
   const paths = Array.from(data[0]?.attributes).map((item: any) => item.slug);
 
@@ -45,7 +45,7 @@ export async function getStaticProps({ params, preview = false }) {
   // });
 
   const { data } = await fetcher(
-    `http://blog.shdev.life:12996/api/posts?populate[0]=coverImage&filters[slug][$eq]=${params.slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=coverImage&filters[slug][$eq]=${params.slug}`
   );
   const post = data[0]?.attributes;
 

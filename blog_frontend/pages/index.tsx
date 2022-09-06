@@ -12,8 +12,9 @@ import Subscribe from '../components/Subscribe';
 import VideoCard from '../components/VideoCard';
 
 export default function Home() {
+  let recentlyPosts
   const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
-  const recentlyPosts = data?.recentlyPosts;
+  recentlyPosts = data?.recentlyPosts;
 
   return (
     <Suspense fallback={null}>

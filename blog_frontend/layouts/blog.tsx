@@ -18,7 +18,7 @@ export default function BlogLayout({
       description={post.excerpt}
       image={
         post?.coverImage
-            ? `http://blog.shdev.life:12996${post?.coverImage}`
+            ? `${process.env.NEXT_PUBLIC_BASE_URL}${post?.coverImage}`
             : 'https://via.placeholder.com/1080'}
       date={new Date(post.publishedAt).toISOString()}
       type="article"

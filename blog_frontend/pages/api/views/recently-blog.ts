@@ -6,7 +6,7 @@ export default async function handler(
 ) {
   try {
     const response = await fetch(
-      `http://blog.shdev.life:12996/api/posts?pagination[pageSize]=3&sort=publishedAt:DESC`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?pagination[pageSize]=3&sort=publishedAt:DESC`,
       {
         method: 'GET'
       }

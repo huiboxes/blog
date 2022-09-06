@@ -4,12 +4,12 @@ import Link from 'next/link';
 
 import useSWR from 'swr';
 import fetcher from 'lib/fetcher';
-import { Post } from 'lib/types';
 
 import Container from '../components/Container';
 import BlogPostCard from '../components/BlogPostCard';
 import Subscribe from '../components/Subscribe';
 import VideoCard from '../components/VideoCard';
+import LoadingSpinner from 'components/LoadingSpinner';
 
 export default function Home() {
   const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
@@ -48,7 +48,8 @@ export default function Home() {
           <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
             最近文章
           </h3>
-          {recentlyPosts && (
+          
+          {recentlyPosts ? (
             <div className="flex gap-6 flex-col md:flex-row">
               <BlogPostCard
                 title={recentlyPosts[0].title}
@@ -66,7 +67,7 @@ export default function Home() {
                 gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
               />
             </div>
-          )}
+          ) : <LoadingSpinner />}
 
           <Link href="/blog">
             <a className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6">

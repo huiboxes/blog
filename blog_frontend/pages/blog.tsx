@@ -27,7 +27,8 @@ export default function Blog({
           文章
         </h1>
         <p className="mb-4 text-gray-600 dark:text-gray-400">
-        &emsp;&emsp;{`记录学习和生活，主要是关于软件开发学习经历。我在博客上总共写了 ${posts.length} 篇文章。使用下面的搜索按标题过滤。`}
+          &emsp;&emsp;
+          {`记录学习和生活，主要是关于软件开发学习经历。我在博客上总共写了 ${posts.length} 篇文章。使用下面的搜索按标题过滤。`}
         </p>
         <div className="relative w-full mb-4">
           <input
@@ -88,16 +89,17 @@ export default function Blog({
 }
 
 export async function getStaticProps({ preview = false }) {
-  
-  // const { data } = useSWR<MyPost[]>(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=categories&populate[1]=cover`, fetcher);
+  const { data } = await fetcher(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=categories&populate[1]=coverImage&sort=publishedAt:DESC`
+  );
   // console.log(data)
+  const posts: Post[] = data.map((item) => item.attributes);
 
-  const { data } = await fetcher(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?populate[0]=categories&populate[1]=coverImage&sort=publishedAt:DESC`)
-  // console.log(data)
-  const posts: Post[] = data.map(item => item.attributes)
+  posts.forEach((item) =>
+    item.coverImage
+      ? (item.coverImage = item.coverImage?.data.attributes.url)
+      : item
+  );
 
-  posts.forEach(item => item.coverImage ? item.coverImage = item.coverImage?.data.attributes.url : item)
-
-  // const posts: Post[] = await getClient(preview).fetch(indexQuery);
-  return { props: { posts } };
+  return { props: { posts }, revalidate: 10 };
 }

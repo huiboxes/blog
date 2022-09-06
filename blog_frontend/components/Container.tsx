@@ -40,6 +40,7 @@ export default function Container(props) {
   const meta = {
     title: '谢少辉 – 编程爱好者, JavaScript 爱好者',
     description: `分享学习过程、技巧。记录成长过程。`,
+    keywords: "谢少辉,个人博客,shdev,游戏开发,前端开发,Vue,React,Unreal Engin,计算机技术,网络技术",
     image: 'https://shdev.life/static/favicons/android-chrome-512x512.png',
     type: 'website',
     ...customMeta
@@ -56,6 +57,7 @@ export default function Container(props) {
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="谢少辉的博客" />
         <meta property="og:description" content={meta.description} />
+        <meta property="og:keywords" content={meta.keywords} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
         

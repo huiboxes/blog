@@ -12,9 +12,8 @@ import Subscribe from '../components/Subscribe';
 import VideoCard from '../components/VideoCard';
 
 export default function Home() {
-  let recentlyPosts;
   const { data } = useSWR<any>(`/api/views/recently-blog`, fetcher);
-  recentlyPosts = data?.recentlyPosts;
+  const recentlyPosts = data?.recentlyPosts;
 
   return (
     <Suspense fallback={null}>
@@ -49,7 +48,6 @@ export default function Home() {
           <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
             最近文章
           </h3>
-          {recentlyPosts || '内容正在加载中......'}
           {recentlyPosts && (
             <div className="flex gap-6 flex-col md:flex-row">
               <BlogPostCard

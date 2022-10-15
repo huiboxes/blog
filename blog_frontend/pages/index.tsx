@@ -25,7 +25,7 @@ export default function Home() {
                 谢少辉
               </h1>
               <h2 className="text-gray-700 dark:text-gray-200 mb-4">
-                软件工程专业 <span className="font-semibold">学生</span>
+                朝技术美术方向努力的 <span className="font-semibold">学生</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 mb-16">
                 喜欢使用脚本语言为生活带来便利。喜欢拥有良好交互体验的应用软件，并总尝试自己实现。热爱游戏，正在学习

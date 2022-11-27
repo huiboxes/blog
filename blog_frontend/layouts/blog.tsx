@@ -34,7 +34,7 @@ export default function BlogLayout({
               height={24}
               width={24}
               sizes="20vw"
-              src="/avatar.png"
+              src="/avatar.jpg"
               className="rounded-full"
             />
             <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">

@@ -37,7 +37,7 @@ export default function Home() {
                 alt="Xieshaohui"
                 height={176}
                 width={176}
-                src="/avatar.png"
+                src="/avatar.jpg"
                 sizes="30vw"
                 priority
                 className="rounded-full filter"

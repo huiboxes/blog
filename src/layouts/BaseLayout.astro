@@ -85,7 +85,12 @@ const meta: SeoMeta =
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7f8" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e" />
+    {/* SVG for modern browsers; ICO for legacy browsers; 128px PNG for Google Search. */}
     <link rel="icon" type="image/svg+xml" href={withBase(faviconImg.src)} />
+    <link rel="icon" type="image/x-icon" href={withBase('/favicon.ico')} sizes="any" />
+    <link rel="icon" type="image/png" sizes="128x128" href={withBase('/favicon-128x128.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase('/apple-touch-icon.png')} />
+    <link rel="manifest" href={withBase('/site.webmanifest')} />
     <link
       rel="alternate"
       type="application/rss+xml"

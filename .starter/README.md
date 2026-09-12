@@ -34,7 +34,7 @@ Open [http://localhost:4321](http://localhost:4321) to see your site.
 
 1. Edit `src/config.ts` to set your site title, author name, and social links.
 2. Copy `.env.example` to `.env` and fill in your values.
-3. Replace `src/assets/images/site/avatar.svg` with your own avatar.
+3. Replace `src/assets/images/site/avatar.jpg` with your own avatar.
 4. Replace `src/assets/images/site/favicon.svg` with your own favicon.
 5. Start writing posts in `src/content/posts/en/`.
 
@@ -164,9 +164,9 @@ The language switcher will disappear and all `hreflang` tags are omitted.
 | Site title, description, author | `src/config.ts` → `SITE`                |
 | Navigation links                | `src/config.ts` → `NAV`                 |
 | Social links                    | `src/config.ts` → `SOCIAL`              |
-| Avatar image                    | `src/assets/images/site/avatar.svg`     |
+| Avatar image                    | `src/assets/images/site/avatar.jpg`     |
 | Favicon                         | `src/assets/images/site/favicon.svg`    |
-| Default OG image                | `src/assets/images/site/og-default.svg` |
+| Default OG image                | `src/assets/images/site/og-default.png` |
 | Global styles                   | `src/styles/global.css`                 |
 | Theme colors                    | daisyUI theme tokens in `global.css`    |
 

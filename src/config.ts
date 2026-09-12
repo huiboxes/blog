@@ -1,6 +1,6 @@
 import process from 'node:process';
-import avatarImg from './assets/images/site/avatar.svg';
-import ogDefaultImg from './assets/images/site/og-default.svg';
+import avatarImg from './assets/images/site/avatar.jpg';
+import ogDefaultImg from './assets/images/site/og-default.png';
 import type { GiscusConfig, NavItem, SiteConfig, SocialLink } from './types/config';
 
 /**
@@ -50,16 +50,15 @@ export const SITE: SiteConfig = {
   // ==========================================
 
   /** Default site title used as homepage <title> and meta. */
-  title: 'Chirping Astro',
+  title: 'Huiboxes',
   /** Site tagline / description. */
-  description:
-    'A modern, multilingual Astro v7 theme inspired by Chirpy — built with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.',
+  description: '一个开发者的个人博客，记录软件开发、AI技术，分享技术经验和学习心得。',
   /** Author/handle shown in footer + meta. */
   author: {
-    name: 'Chirping Astro',
+    name: 'huiboxes',
     url: GITHUB_HANDLE ? `https://github.com/${GITHUB_HANDLE}` : undefined,
     avatar: avatarImg,
-    bio: 'A text-focused Astro v7 theme.',
+    bio: '不知何时失业的开发者',
   },
   /** Default OG image. */
   defaultOgImage: ogDefaultImg.src,
@@ -76,7 +75,7 @@ export const SITE: SiteConfig = {
   /** Automatically generate Open Graph images for posts that don't have a `heroImage`. */
   autoOgImage: true,
   /** Show a link to the Privacy Policy page in the footer. */
-  showPrivacyPolicy: true,
+  showPrivacyPolicy: false,
   /** Footer text/link controls. */
   footer: {
     /**
@@ -92,7 +91,7 @@ export const SITE: SiteConfig = {
     /** Whether to show the Privacy Policy link in the footer. */
     showPrivacyPolicy: true,
     /** Whether to show theme credits in the footer right side. Theme <themeName> */
-    showThemeCredits: true,
+    showThemeCredits: false,
     /** Label for the theme repository link in the right footer line. */
     themeName: 'Chirping Astro',
     /** Default upstream theme repository. */

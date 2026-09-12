@@ -182,7 +182,7 @@ URL:
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const avatar = readFileSync(join(process.cwd(), 'src/assets/images/site/avatar.svg'));
+const avatar = readFileSync(join(process.cwd(), 'src/assets/images/site/avatar.jpg'));
 const avatarDataUrl = `data:image/svg+xml;base64,${avatar.toString('base64')}`;
 ```
 

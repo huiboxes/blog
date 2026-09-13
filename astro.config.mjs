@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import expressiveCode from 'astro-expressive-code';
 import icon from 'astro-icon';
-import { defineConfig, fontProviders, svgoOptimizer } from 'astro/config';
+import { defineConfig, svgoOptimizer } from 'astro/config';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import process from 'node:process';
@@ -154,6 +154,7 @@ export default defineConfig({
       { protocol: 'https', hostname: 'cdn.jsdelivr.net' },
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'imagedelivery.net' },
+      { protocol: 'https', hostname: '*.r2.dev' },
     ],
   },
 
@@ -220,7 +221,7 @@ export default defineConfig({
       styleOverrides: {
         borderRadius: '0.5rem',
         codeFontFamily:
-          "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+          "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace",
         codeFontSize: '0.875rem',
         frames: {
           shadowColor: 'transparent',
@@ -273,88 +274,9 @@ export default defineConfig({
     }),
   },
 
-  fonts: [
-    // Source Sans 3 — main UI font from @fontsource/source-sans-3 npm package
-    {
-      name: 'Source Sans 3',
-      cssVariable: '--font-source-sans-3',
-      provider: fontProviders.local(),
-      options: {
-        variants: [
-          {
-            weight: '400',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2',
-            ],
-          },
-          {
-            weight: '600',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource/source-sans-3/files/source-sans-3-latin-600-normal.woff2',
-            ],
-          },
-          {
-            weight: '700',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource/source-sans-3/files/source-sans-3-latin-700-normal.woff2',
-            ],
-          },
-          {
-            weight: '900',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource/source-sans-3/files/source-sans-3-latin-900-normal.woff2',
-            ],
-          },
-        ],
-      },
-    },
-    // Lato — secondary font from @fontsource/lato npm package
-    {
-      name: 'Lato',
-      cssVariable: '--font-lato',
-      provider: fontProviders.local(),
-      options: {
-        variants: [
-          {
-            weight: '300',
-            style: 'normal',
-            src: ['./node_modules/@fontsource/lato/files/lato-latin-300-normal.woff2'],
-          },
-          {
-            weight: '400',
-            style: 'normal',
-            src: ['./node_modules/@fontsource/lato/files/lato-latin-400-normal.woff2'],
-          },
-        ],
-      },
-    },
-    // JetBrains Mono — monospace font from @fontsource/jetbrains-mono npm package
-    {
-      name: 'JetBrains Mono',
-      cssVariable: '--font-jetbrains-mono',
-      provider: fontProviders.local(),
-      options: {
-        variants: [
-          {
-            weight: '400',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2',
-            ],
-          },
-          {
-            weight: '600',
-            style: 'normal',
-            src: [
-              './node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-600-normal.woff2',
-            ],
-          },
-        ],
-      },
-    },
-  ],
+  // Fonts: intentionally omitted — the site uses the system font stack
+  // (see `--font-sans` / `--font-mono` in src/styles/global.css) so pages
+  // ship zero webfont bytes and nothing has to be preloaded. To self-host a
+  // webfont later, add a `fonts: [...]` block with `fontProviders.local()`
+  // here and re-import `fontProviders` from `astro/config`.
 });

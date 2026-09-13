@@ -38,6 +38,7 @@ const i18n = {
   hintShortcut: t('search.hintShortcut'),
   hintNavigate: t('search.hintNavigate'),
   hintSelect: t('search.hintSelect'),
+  indexUnavailable: t('search.indexUnavailable'),
 };
 ---
 
@@ -136,7 +137,7 @@ const i18n = {
   </div>
 
   <form method="dialog" class="modal-backdrop">
-    <button>close</button>
+    <button>{i18n.closeLabel}</button>
   </form>
 </dialog>
 
@@ -358,7 +359,7 @@ const i18n = {
         console.error(err);
         renderState(
           results!,
-          `<p class="text-error px-5 py-6 text-sm">Search index not available. Run <code class="bg-base-200 rounded px-1">bun run build</code>.</p>`,
+          `<p class="text-error px-5 py-6 text-sm">${I18N.indexUnavailable}</p>`,
         );
       }
     }

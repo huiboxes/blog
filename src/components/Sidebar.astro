@@ -30,7 +30,7 @@ const navItems = NAV.map((item) => ({
 }));
 ---
 
-<aside id="sidebar" class="chirpy-sidebar" aria-label="Sidebar">
+<aside id="sidebar" class="chirpy-sidebar" aria-label={t('a11y.sidebar')}>
   {/* Profile */}
   <header class="flex w-full flex-col items-center pt-4 pb-6 text-center">
     <a href={home} class="flex flex-col items-center" aria-label={SITE.title}>
@@ -80,7 +80,7 @@ const navItems = NAV.map((item) => ({
   </header>
 
   {/* Vertical nav */}
-  <nav class="chirpy-nav flex-1" aria-label="Main">
+  <nav class="chirpy-nav flex-1" aria-label={t('a11y.mainNav')}>
     <ul class="contents flex-col gap-0.5">
       {
         navItems.map((item) => {
@@ -132,7 +132,7 @@ const navItems = NAV.map((item) => ({
   type="button"
   data-sidebar-mask
   class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"
-  aria-label="Close sidebar"
+  aria-label={t('a11y.closeSidebar')}
   tabindex="-1"></button>
 
 <script>

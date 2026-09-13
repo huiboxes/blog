@@ -1,6 +1,8 @@
 {
   "name": "huiboxes",
   "short_name": "huiboxes",
+  "description": "一个开发者的个人博客，记录软件开发、AI技术，分享技术经验和学习心得。",
+  "lang": "zh-CN",
   "icons": [
     {
       "src": "android-chrome-192x192.png",

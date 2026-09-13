@@ -1,6 +1,6 @@
 ---
 import { SITE, type Locale } from '../config';
-import { formatDate, isoDate } from '../i18n/utils';
+import { formatDate, isoDate, useTranslations } from '../i18n/utils';
 import { type Post, postPath, heroImage, shouldShowHero } from '../utils/posts';
 import SmartImage from './SmartImage.astro';
 import { Icon } from 'astro-icon/components';
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { post, locale, prioritizeLcp = false } = Astro.props;
+const t = useTranslations(locale);
 const href = postPath(post);
 const heroAsset = heroImage(post);
 const hasImage = Boolean(heroAsset) && shouldShowHero(post);
@@ -87,8 +88,8 @@ const isDynamicCardHeight = post.data.dynamicPostCardHeight ?? SITE.dynamicPostC
           post.data.pinned && (
             <span
               class="text-primary inline-flex items-center gap-1"
-              title="Pinned"
-              aria-label="Pinned"
+              title={t('a11y.pinned')}
+              aria-label={t('a11y.pinned')}
             >
               <Icon name="lucide:pin" width={14} height={14} />
             </span>

@@ -23,6 +23,7 @@ const i18n = {
   noResultsFor: t('search.noResultsFor'),
   resultsCount: t('search.resultsCount'),
   resultsCountOne: t('search.resultsCountOne'),
+  indexUnavailable: t('search.indexUnavailable'),
 };
 ---
 
@@ -228,7 +229,7 @@ const i18n = {
         setResults(data);
       } catch (err) {
         console.error(err);
-        results!.innerHTML = `<p class="text-error px-5 py-6 text-sm">Search index not available.</p>`;
+        results!.innerHTML = `<p class="text-error px-5 py-6 text-sm">${I18N.indexUnavailable}</p>`;
       }
     }
 

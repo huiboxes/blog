@@ -3,7 +3,7 @@
  *
  * Wraps the `astro:content` collection API to:
  *  - filter drafts in production
- *  - infer locale from filesystem path (posts/en/foo -> 'en')
+ *  - infer locale from filesystem path (posts/zh/foo -> 'zh')
  *  - sort by pubDate desc, with pinned posts first
  *  - group posts by tag / category / month
  *  - resolve translation siblings via `translationKey`
@@ -13,6 +13,7 @@ import type { ImageMetadata } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import { SITE, type Locale } from '../config';
+import { htmlLang } from '../i18n/utils';
 import { withBase } from '../i18n/utils';
 import { slugify } from './slugify';
 
@@ -184,7 +185,7 @@ export function groupByYearMonth(
     if (!months.has(m)) months.set(m, []);
     months.get(m)!.push(post);
   }
-  const lang = locale === 'fr' ? 'fr-FR' : 'en-US';
+  const lang = htmlLang(locale);
   const fmt = new Intl.DateTimeFormat(lang, { month: 'long' });
   return Array.from(buckets.entries())
     .sort((a, b) => b[0] - a[0])

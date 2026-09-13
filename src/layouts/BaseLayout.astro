@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 
-import { Font } from 'astro:assets';
 import Sidebar from '../components/Sidebar.astro';
 import Topbar from '../components/Topbar.astro';
 import Footer from '../components/Footer.astro';
@@ -10,7 +9,7 @@ import SEO from '../components/SEO.astro';
 import BackToTop from '../components/islands/BackToTop.astro';
 import { ClientRouter } from 'astro:transitions';
 import faviconImg from '../assets/images/site/favicon.svg';
-import { SITE, type Locale } from '../config';
+import { type Locale } from '../config';
 import { detectLocale, htmlLang, useTranslations, stripLocale, withBase } from '../i18n/utils';
 import { buildSeo, type SeoMeta } from '../utils/seo';
 
@@ -91,23 +90,15 @@ const meta: SeoMeta =
     <link rel="icon" type="image/png" sizes="128x128" href={withBase('/favicon-128x128.png')} />
     <link rel="apple-touch-icon" sizes="180x180" href={withBase('/apple-touch-icon.png')} />
     <link rel="manifest" href={withBase('/site.webmanifest')} />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={`${SITE.title} (EN)`}
-      href={withBase('/rss.xml')}
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={`${SITE.title} (FR)`}
-      href={withBase('/fr/rss.xml')}
-    />
+    {
+      /* RSS auto-discovery is emitted by <SEO /> below, which derives the
+        feed URL from the active locale — no hard-coded locale paths here. */
+    }
     <SEO meta={meta} />
-    {/* Custom fonts configured via Astro Fonts API */}
-    <Font cssVariable="--font-source-sans-3" />
-    <Font cssVariable="--font-lato" />
-    <Font cssVariable="--font-jetbrains-mono" preload />
+    {
+      /* No webfonts: the site uses the system font stack defined by
+        `--font-sans` / `--font-mono` in src/styles/global.css. */
+    }
     <ClientRouter />
     {/* Apply persisted theme as early as possible to avoid FOUC. */}
     <script is:inline>
@@ -149,7 +140,7 @@ const meta: SeoMeta =
           <div class="flex min-w-0 flex-1 flex-col">
             <main
               id="main"
-              aria-label="Main Content"
+              aria-label={t('a11y.mainContent')}
               class:list={['min-w-0 flex-1 py-6 lg:pr-2', narrow ? 'mx-auto w-full max-w-3xl' : '']}
             >
               <slot />
@@ -160,7 +151,7 @@ const meta: SeoMeta =
 
           {
             !hidePanel && (
-              <aside class="chirpy-panel-rail" aria-label="Sidebar widgets">
+              <aside class="chirpy-panel-rail" aria-label={t('a11y.sidebarWidgets')}>
                 <Panel locale={locale} />
                 <slot name="aside-bottom" />
               </aside>
@@ -170,6 +161,6 @@ const meta: SeoMeta =
       </div>
     </div>
 
-    <BackToTop />
+    <BackToTop locale={locale} />
   </body>
 </html>

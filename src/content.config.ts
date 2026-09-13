@@ -2,10 +2,10 @@
  * Content Collections (Astro v7 loader API).
  *
  * Folder convention: `src/content/<collection>/<locale>/**`
- *  - posts/en/**  -> EN posts
- *  - posts/fr/**  -> FR posts
- *  - pages/en/**  -> EN static pages (about, etc.)
- *  - pages/fr/**  -> FR static pages
+ *  - posts/zh/**  -> 中文文章（默认语言，URL 无前缀）
+ *  - posts/en/**  -> English posts (served under /en/)
+ *  - pages/zh/**  -> 中文静态页面（关于、隐私政策等）
+ *  - pages/en/**  -> English static pages
  *
  * The locale is derived from the file path so authors do not need to set it
  * manually (but they may override it in frontmatter).

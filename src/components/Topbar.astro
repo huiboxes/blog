@@ -28,7 +28,7 @@ const t = useTranslations(locale);
 const home = localizedPath('/', locale);
 ---
 
-<header class="chirpy-topbar" aria-label="Top Bar">
+<header class="chirpy-topbar" aria-label={t('a11y.topBar')}>
   <div class="flex flex-1 items-center gap-2 px-1">
     <button
       type="button"
@@ -39,7 +39,10 @@ const home = localizedPath('/', locale);
       <Icon name="lucide:menu" width={18} height={18} />
     </button>
 
-    <nav aria-label="Breadcrumb" class="text-base-content/70 hidden truncate text-sm sm:block">
+    <nav
+      aria-label={t('a11y.breadcrumb')}
+      class="text-base-content/70 hidden truncate text-sm sm:block"
+    >
       <ol class="flex items-center gap-1">
         <li>
           <a href={home} class="hover:text-primary">{t('nav.home')}</a>

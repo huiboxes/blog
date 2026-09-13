@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
 import { useTranslations, localizedPath } from '../i18n/utils';
 
-const locale = 'en';
+const locale = SITE.defaultLocale;
 const t = useTranslations(locale);
 ---
 

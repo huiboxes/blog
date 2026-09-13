@@ -21,8 +21,7 @@ collects, uses, and protects information when you visit **[SITE_URL]**.
 
 Depending on how you use this site, we may process:
 
-- Usage data: pages viewed, referrer, browser, device type, and approximate
-  region.
+- Usage data: pages viewed, referrer, browser, device type, and approximate region.
 - Technical data: IP address, user agent, and performance/error logs.
 - Information you provide directly: email or message content when you contact us.
 - Comment data (if enabled): profile and comment metadata handled by

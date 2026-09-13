@@ -1,0 +1,17 @@
+{
+  // Worker 名 —— 必须和 Cloudflare 后台创建的 Worker 名完全一致，否则构建会失败。
+  // 想改名就同时改这里和后台，两处必须一样。
+  "name": "codenlog",
+
+  // 固定为部署当天，不要填未来的日期。
+  "compatibility_date": "2026-09-13",
+
+  "assets": {
+    // Astro 的构建输出目录
+    "directory": "./dist",
+
+    // 让 src/pages/404.astro 生成的 404.html 生效。
+    // 不写这行的话，访问不存在的路径会看到 Cloudflare 的默认 404 页。
+    "not_found_handling": "404-page"
+  }
+}

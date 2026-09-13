@@ -22,13 +22,24 @@
 
 `.env` **不热重载** —— 改完必须重启 `bun run dev`。
 
+**构建时的 Pagefind 提示不用管。** `bun run build` 会打印两遍：
+
+```
+Note: Pagefind doesn't support stemming for the language zh-cn.
+```
+
+中文没有词形变化，本来就不需要词干提取（stemming 是给英文这类有词形变化的语言用的），
+Pagefind 对中文用的是**分词**，搜索完全正常；打印两遍也是它的正常输出。
+真想让它闭嘴，可以在 `pagefind` 命令后加 `--quiet` —— 代价是索引统计（索引了多少页面）会一起被隐藏。
+**不要用 `--force-language` 消除它** —— 那会把整站强制成单一语言索引，中英双语站里中文搜索会基本失效。
+
 ---
 
 ## 1. 新建一篇文章
 
 路径：`src/content/posts/<语言>/<文件名>.md`
 
-语言**由目录名推断**（`posts/en/` → 英文，`posts/fr/` → 法文），**不要手写 `lang` 字段**。
+语言**由目录名推断**（`posts/zh/` → 中文，`posts/en/` → 英文），**不要手写 `lang` 字段**。
 
 文件名就是 URL 里的 slug。`2026-09-13-hello.md` → `/posts/2026-09-13-hello/`。
 
@@ -121,7 +132,7 @@ categories: [分类名]
 
 基础写法就是三反引号 + 语言标识。常用修饰符：
 
-````markdown
+`````markdown
 ````ts title="src/utils/greet.ts"          ← 带窗口标题栏
 ```bash frame="terminal"                   ← 终端样式（自动识别，也可手动指定）
 ```bash frame="code"                       ← 强制代码样式
@@ -134,7 +145,9 @@ categories: [分类名]
 ```ts wrap                                 ← 长行软换行（不横向滚动）
 ```ashtml                                  ← 块内原始 HTML 直接渲染，不当代码高亮
 ````
-````
+`````
+
+`````
 
 可以叠加使用：
 
@@ -142,7 +155,7 @@ categories: [分类名]
 ```ts title="src/utils/seo.ts" ins={5-7} mark="locale" {2}
 
 ```
-````
+`````
 
 其他：
 
@@ -393,7 +406,7 @@ import Callout from '../../../components/Callout.astro';
 
 当前 `.env` 里 `PUBLIC_GISCUS_ENABLED=false`，全站关闭。
 
-要开启：去 <https://giscus.app> 生成 4 个值填进 `.env`，把开关改成 `true`，重启 dev。
+要开启：访问https://github.com/apps/giscus并授予应用访问用于存放讨论内容的仓库的权限。去 <https://giscus.app> 生成 4 个值填进 `.env`，把开关改成 `true`，重启 dev。
 
 - 仓库必须是**公开**的，且开了 Discussions
 - 映射方式选 **`pathname`**（这样中英版本各用各的评论区）
@@ -445,7 +458,7 @@ import Callout from '../../../components/Callout.astro';
 - 模板：`src/utils/og-image.ts`，颜色是硬编码的十六进制
 - 耗时：每张约 50–100ms
 
-**默认分享图**是 `src/assets/images/site/og-default.svg` —— 这个文件里用 `<text>` 把主题作者的名字烤进图里了，**必须换掉**。
+**默认分享图**是 `src/assets/images/site/og-default.png` —— 这个文件里用 `<text>` 把主题作者的名字烤进图里了，**必须换掉**。
 
 > 源站参考：<https://aneejian.com/chirping-astro/posts/automatic-og-images/>
 
@@ -453,7 +466,7 @@ import Callout from '../../../components/Callout.astro';
 
 ## 16. 多语言
 
-当前配置：英文在根路径，法文在 `/fr`。
+当前配置：**中文在根路径**（URL 无前缀），英文在 `/en/`，法文已移除。
 
 - **只发一种语言** → `src/config.ts` 里设 `multilingual: false`，语言切换器消失，hreflang 标签不再输出
 - **只翻译部分文章** → 保持开启即可。主题会检测哪些文章真有对应翻译，没有的话**该页面的切换器直接隐藏**，不会让人点进 404

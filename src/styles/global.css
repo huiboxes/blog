@@ -851,3 +851,18 @@
   -webkit-appearance: none;
   appearance: none;
 }
+
+/* ---------- 中文正文首行缩进 ----------
+   <html lang> 来自 i18n/utils.ts 的 htmlLang()：中文页是 zh-CN、英文页是 en-US，
+   所以用属性选择器就能区分语言，不需要给文章加额外的 frontmatter 字段。
+   只作用于正文的直接子段落：列表项、引用块、告警框里的段落不会被缩进。 */
+@layer components {
+  html[lang^='zh'] .prose-chirpy > p {
+    text-indent: 2em;
+  }
+
+  /* 以图片开头的段落不缩进，否则整张图会被推右两个字符 */
+  html[lang^='zh'] .prose-chirpy > p:has(> img:first-child) {
+    text-indent: 0;
+  }
+}
